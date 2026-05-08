@@ -214,13 +214,14 @@ export default function App() {
                   <th className="px-6 py-3">วันหมดอายุวีซ่า (Visa Expiry / 签证有效期)</th>
                   <th className="px-6 py-3">เอกสารที่ส่งมอบ (Documents)</th>
                   <th className="px-6 py-3 text-right">จัดการ (Action)</th>
+                  <th className="px-6 py-3">หมายเหตุ (Note)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {filtered.length === 0 ? (
                   <tr>
                     <td
-                      colSpan={5}
+                      colSpan={6}
                       className="px-6 py-12 text-center text-slate-400"
                     >
                       ไม่พบพนักงานที่ตรงกับคำค้นหา
@@ -292,6 +293,11 @@ export default function App() {
                             </a>
                           ))}
                         </div>
+                      </td>
+
+                      {/* Note */}
+                      <td className="px-6 py-4 text-sm text-slate-600">
+                        {emp.note || "-"}
                       </td>
                     </tr>
                   ))
