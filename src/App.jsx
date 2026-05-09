@@ -36,25 +36,22 @@ const getDocs = (empId) => {
 const employees = [];
 
 const statusConfig = {
-  completed: {
-    label: "เสร็จสิ้น",
+  "เสร็จสิ้น": {
     icon: CheckCircle2,
     className: "bg-green-50 text-green-700",
   },
-  pending_approval: {
-    label: "รออนุมัติ",
+  "รออนุมัติ": {
     icon: Clock,
     className: "bg-amber-50 text-amber-700",
   },
-  pending_documents: {
-    label: "รอส่งเอกสารเพิ่มเติม",
+  "รอส่งเอกสารเพิ่มเติม": {
     icon: AlertCircle,
     className: "bg-orange-50 text-orange-700",
   },
 };
 
 const totalEmployees = employees.length;
-const completedCount = employees.filter((e) => e.status === "completed").length;
+const completedCount = employees.filter((e) => e.status === "เสร็จสิ้น").length;
 const readyFiles = employees.reduce((sum, e) => sum + e.documents.length, 0);
 
 // ── Toast Component ──────────────────────────────────────────────────────────
@@ -91,7 +88,7 @@ export default function App() {
   }, []);
 
   const filtered = employees.filter((emp) =>
-    emp.name.toLowerCase().includes(search.toLowerCase())
+    emp.nameEn.toLowerCase().includes(search.toLowerCase())
   );
 
   // ── Bulk download (zip) ────────────────────────────────────────────────────
@@ -101,7 +98,7 @@ export default function App() {
       const zip = new JSZip();
 
       for (const emp of employees) {
-        const folder = zip.folder(`${emp.id}_${emp.name.replace(/ /g, "_")}`);
+        const folder = zip.folder(`${emp.id}_${emp.nameEn.replace(/ /g, "_")}`);
         for (const doc of emp.documents) {
           const res = await fetch(doc.url);
           if (!res.ok) throw new Error(`Failed to fetch ${doc.url}`);
@@ -236,7 +233,7 @@ export default function App() {
                       {/* Name */}
                       <td className="whitespace-nowrap px-6 py-4">
                         <div className="font-medium text-slate-900">
-                          {emp.name}
+                          {emp.nameEn}
                         </div>
                         <div className="text-xs text-slate-500">{emp.nameZh}</div>
                         <div className="text-xs text-slate-400">{emp.id}</div>
@@ -245,14 +242,14 @@ export default function App() {
                       {/* Status */}
                       <td className="px-6 py-4">
                         {(() => {
-                          const cfg = statusConfig[emp.status] ?? statusConfig.completed;
+                          const cfg = statusConfig[emp.status] ?? statusConfig["เสร็จสิ้น"];
                           const Icon = cfg.icon;
                           return (
                             <span
                               className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${cfg.className}`}
                             >
                               <Icon size={14} />
-                              {cfg.label}
+                              {emp.status}
                             </span>
                           );
                         })()}
@@ -260,7 +257,10 @@ export default function App() {
 
                       {/* Visa Expiry */}
                       <td className="whitespace-nowrap px-6 py-4 text-slate-600">
-                        {emp.visaExpiry}
+                        <div>{emp.expiryDateEn}</div>
+                        {emp.expiryDateZh && emp.expiryDateZh !== emp.expiryDateEn && (
+                          <div className="text-xs text-slate-500">{emp.expiryDateZh}</div>
+                        )}
                       </td>
 
                       {/* Documents */}
@@ -297,7 +297,7 @@ export default function App() {
 
                       {/* Note */}
                       <td className="px-6 py-4 text-sm text-slate-600">
-                        {emp.note || "-"}
+                        {emp.remark || "-"}
                       </td>
                     </tr>
                   ))
