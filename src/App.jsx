@@ -33,10 +33,33 @@ const getDocs = (empId) => {
   ];
 };
 
-const employees = [];
+const employees = [
+  { id: "EMP-001", nameEn: "QIAO GUANGLONG", nameZh: "乔 广龙", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-001"), remark: "" },
+  { id: "EMP-002", nameEn: "ZHU GUANGQING", nameZh: "朱 广清", status: "รอแก้ไขเอกสาร", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-002"), remark: "" },
+  { id: "EMP-003", nameEn: "ZHANG DEXIAO", nameZh: "张 德校", status: "รอแก้ไขเอกสาร", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-003"), remark: "" },
+  { id: "EMP-004", nameEn: "TANG DONGFANG", nameZh: "汤 东方", status: "รอแก้ไขเอกสาร", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-004"), remark: "" },
+  { id: "EMP-005", nameEn: "LIU AN", nameZh: "刘 安", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-005"), remark: "" },
+  { id: "EMP-006", nameEn: "DU JINZHONG", nameZh: "杜 金中", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-006"), remark: "" },
+  { id: "EMP-007", nameEn: "SUN DEKUN", nameZh: "孙 德坤", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-007"), remark: "" },
+  { id: "EMP-008", nameEn: "HUANG MINGSONG", nameZh: "黄 明松", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-008"), remark: "" },
+  { id: "EMP-009", nameEn: "DING ZUOBING", nameZh: "丁 作兵", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-009"), remark: "" },
+  { id: "EMP-010", nameEn: "ZHANG ZHEN", nameZh: "张 振", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-010"), remark: "" },
+  { id: "EMP-011", nameEn: "YU CHENGXIANG", nameZh: "喻 成祥", status: "อนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-011"), remark: "" },
+  { id: "EMP-012", nameEn: "LIU CHANGSHENG", nameZh: "刘 昌盛", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-012"), remark: "" },
+  { id: "EMP-013", nameEn: "WANG XIAOCHAO", nameZh: "王 孝超", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-013"), remark: "" },
+  { id: "EMP-014", nameEn: "ZHU GUANGQING", nameZh: "朱 广清", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-014"), remark: "" },
+  { id: "EMP-015", nameEn: "FANG YANPING", nameZh: "方 延平", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-015"), remark: "" },
+  { id: "EMP-016", nameEn: "GAO JIAN", nameZh: "高 建", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-016"), remark: "" },
+  { id: "EMP-017", nameEn: "WANG SHAOHUI", nameZh: "王 少辉", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-017"), remark: "" },
+  { id: "EMP-018", nameEn: "SUN HONGLIANG", nameZh: "孙 宏亮", status: "รออนุมัติ", expiryDateEn: "-", expiryDateZh: "-", documents: getDocs("EMP-018"), remark: "" },
+];
 
 const statusConfig = {
   "เสร็จสิ้น": {
+    icon: CheckCircle2,
+    className: "bg-green-50 text-green-700",
+  },
+  "อนุมัติ": {
     icon: CheckCircle2,
     className: "bg-green-50 text-green-700",
   },
@@ -45,6 +68,10 @@ const statusConfig = {
     className: "bg-amber-50 text-amber-700",
   },
   "รอส่งเอกสารเพิ่มเติม": {
+    icon: AlertCircle,
+    className: "bg-orange-50 text-orange-700",
+  },
+  "รอแก้ไขเอกสาร": {
     icon: AlertCircle,
     className: "bg-orange-50 text-orange-700",
   },
